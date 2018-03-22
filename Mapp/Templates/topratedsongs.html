@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Top Rated Songs{% endblock %}
+
+{% block body %}
+     <div class="container">
+        <form>
+            <div class=" panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Top Rated Songs</strong></h3>
+                    </div>
+                    <div class="panel-body">
+
+                    <table class="table table-striped table-bordered datatables">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Song ID</th>
+                                <th>Album Name</th>
+                                <th>Song Name</th>
+                                <th>Artist Name</th>
+                                <td>No Of Views</td>
+                                <th>Top Rated Songs</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                         {% for top in toprated %}
+                        <tr>
+                            <td>{{forloop.counter0|add:toprated.start_index}}</td>
+                            <td>{{top.Song_ID}}</td>
+                            <td>{{top.Song_ID__Album_ID__Album_Name}}</td>
+                            <td>{{top.Song_ID__Song_Name}}</td>
+                            <td>{{top.Song_ID__Artist_Name}}</td>
+                            <td>{{top.Song_ID__Views_No}}</td>
+                            <td>{{top.avg_rating}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+     </div>
+{% endblock %}
+

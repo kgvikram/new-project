@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+        <div class="container">
+            <form method="POST">
+            {% csrf_token %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Login Form</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            {% if error %}
+                            <div class="row" >
+                                <div class="alert alert-danger col-sm-offset-3 col-sm-8">
+                                    <strong>Enter a valid login ID and Password</strong><br><br>
+                                    <strong>Click here to<a href="/registrationpage "> Register</a></strong>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="control-label col-lg-offset-1 col-lg-2" for="Username">Username</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="Username" placeholder="Enter username"
+                                                       name="username" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="control-label col-lg-offset-1 col-lg-2" for="password">Password</label>
+                                    <div class="col-lg-8">
+                                        <input type="password" class="form-control" id="password" placeholder="Enter password"
+                                                           name="password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-offset-3 col-lg-6">
+                                        <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock %}
+
+

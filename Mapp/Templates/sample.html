@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script>
+
+      $(function() {
+        $("#places").autocomplete({
+          source: "/get_places/",
+          select: function (event, ui) { //item selected
+            AutoCompleteSelectHandler(event, ui)
+          },
+          minLength: 2,
+        });
+      });
+
+      function AutoCompleteSelectHandler(event, ui)
+      {
+        var selectedObj = ui.item;
+      }
+
+    </script>
+
+</head>
+<body>
+    <div class="ui-widget">
+          <label for="places">Places: </label>
+          <input id="places">
+    </div>
+</body>
+</html>

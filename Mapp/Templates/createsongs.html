@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Create_Song{% endblock %}
+
+{% load mapp_extras %}
+
+
+{% block body %}
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+        <div class="login-panel panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>Create New Song</strong></h3>
+            </div>
+            <div class="panel-body">
+                    <fieldset>
+                        {% if songexistserror %}
+                         <div class="row" >
+                            <div class="alert alert-danger  col-lg-offset-3 col-lg-6">
+                                 <strong>Song Name already exists</strong>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <div class="row" >
+                            <label class="control-label col-lg-offset-1 col-lg-2" for="album">Album Name</label>
+                            <div class="col-lg-6">
+                                <select class="form-control " id="album" name="album">
+                                    {% for create in createalbumlist %}
+                                        <option  value="{{create.Album_ID}}">
+                                            {{create|duplicate:duplicatealbum }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" name="add" value="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-offset-1 col-lg-2" for="Song_name">Song Name</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="Song_name" placeholder="Please enter Song name" name="Song_name"
+                                            onkeyup="javascript:capitalize(this.id, this.value)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-offset-1 col-lg-2" for="Artist_name">Artist Name</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="Artist_name" placeholder="Please enter Artist name"  name="Artist_name"
+                                            onkeyup="javascript:capitalize(this.id, this.value)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-3 col-lg-6">
+                                <button type="submit" name="form_action" value="create_song" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <form method="POST">
+            {% csrf_token %}
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button"  data-dismiss="modal" class="close">&times;</button>
+                            <h4 class="modal-title"><b>Add New Album</b></h4>
+                        </div>
+                        <div class="form-group">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                  <label class="control-label col-lg-3" for="Album_name">Album Name</label>
+                                  <div class="col-lg-8">
+                                      <input type="text" class="form-control" id="Album_name" placeholder="Please enter your Album Name" name="Album_name"
+                                            onkeyup="javascript:capitalize(this.id, this.value)">
+                                    </div>
+                                </div><br><br>
+
+                                <div class="form-group">
+                                  <label class="control-label col-lg-3" for="datepicker">Album Year</label>
+                                      <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="datepicker" placeholder="Please enter your Album Year" name="Year">
+                                      </div>
+                                </div><br><br>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-3 col-lg-6">
+                                        <button type="submit" name="form_action" value="create_album" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

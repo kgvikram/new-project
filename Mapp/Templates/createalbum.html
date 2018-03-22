@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Create_Album{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Create New Album</strong></h3>
+                </div>
+                <div class="panel-body">
+                        <fieldset>
+                            {% if albumerror %}
+                             <div class="row" >
+                                <div class="alert alert-danger col-sm-offset-3 col-sm-8">
+                                    <strong>Album Name already exists</strong>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% include 'form_createalbum.html'%}
+
+                        </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

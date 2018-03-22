@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <form method="POST">
+        {% csrf_token %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Registration Form</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            {% if registrationerror %}
+                            <div class="row" >
+                                <div class="alert alert-danger col-sm-offset-3 col-sm-8">
+                                    <strong> This Username or Email ID already exists</strong><br><br>
+                                    <strong>Click here to <a href="/login"> Login</a></strong>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <div class="row col-lg-offset-1">
+                                    {{ form.as_p }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-offset-3 col-lg-6">
+                                        <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+        </form>
+</div>
+
+{% endblock %}
+
